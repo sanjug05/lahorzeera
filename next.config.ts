@@ -4,6 +4,7 @@ const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
 const repo = process.env.GITHUB_REPOSITORY?.replace(/.*\//, '') ?? '';
 const basePath = isGithubActions && repo ? `/${repo}` : '';
 
+// Keep GitHub Pages static-export settings while preserving remote image host config.
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
