@@ -1,7 +1,4 @@
 const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
-const repo = process.env.GITHUB_REPOSITORY?.replace(/.*\//, '') ?? '';
-const basePath = isGithubActions && repo ? `/${repo}` : '';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
