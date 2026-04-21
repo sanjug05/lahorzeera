@@ -1,18 +1,1406 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lahor Zeera</title>
-    <meta name="description" content="Lahor Zeera premium beverage website" />
-    <meta http-equiv="refresh" content="0; url=/" />
-    <script>
-      window.location.replace('/');
-    </script>
-  </head>
-  <body>
-    <noscript>
-      <p>Please open <a href="/">Lahor Zeera</a>.</p>
-    </noscript>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>lahor Zeera | The Real Desi Vibe</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Archivo:wght@300;400;500;600;700;800&family=Chillax:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --zeera-green: #00A86B;
+      --zeera-gold: #FFD700;
+      --zeera-orange: #FF6B35;
+      --zeera-purple: #7B2D8E;
+      --zeera-pink: #FF69B4;
+      --zeera-dark: #1A1A2E;
+      --zeera-light: #F5F5DC;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --neon-glow: 0 0 20px rgba(0, 168, 107, 0.5);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: linear-gradient(135deg, #0F0F1A 0%, #1A1A2E 50%, #16213E 100%);
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--zeera-gold);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.2s ease;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--zeera-orange);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+    }
+
+    /* Noise Overlay */
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="300" height="300" filter="url(%23noise)" opacity="0.04"/></svg>');
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+      background: rgba(26, 26, 46, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .logo-emoji {
+      font-size: 36px;
+      animation: rotate 4s linear infinite;
+    }
+
+    .logo-text {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--zeera-gold), var(--zeera-orange), var(--zeera-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--zeera-green), var(--zeera-gold), var(--zeera-orange));
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+
+    .nav-link:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link:hover {
+      color: var(--zeera-gold);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--zeera-green), var(--zeera-orange));
+      padding: 12px 28px;
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      border: none;
+      box-shadow: var(--neon-glow);
+    }
+
+    .nav-cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 168, 107, 0.6);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: var(--zeera-gold);
+      margin: 5px 0;
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 120px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--zeera-gold);
+      margin-bottom: 30px;
+      animation: slideUp 0.8s ease;
+    }
+
+    .hero-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(48px, 8vw, 80px);
+      line-height: 1.1;
+      margin-bottom: 30px;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    .hero-title-line {
+      display: block;
+    }
+
+    .hero-title-line:last-child {
+      background: linear-gradient(135deg, var(--zeera-gold), var(--zeera-orange), var(--zeera-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+      max-width: 500px;
+      animation: slideUp 0.8s ease 0.4s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 40px;
+      animation: slideUp 0.8s ease 0.6s both;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--zeera-gold);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      animation: slideUp 0.8s ease 0.8s both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--zeera-green), var(--zeera-orange));
+      padding: 16px 36px;
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      border: none;
+      box-shadow: var(--neon-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(0, 168, 107, 0.7);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      padding: 16px 36px;
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid var(--glass-border);
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--zeera-gold);
+      color: var(--zeera-gold);
+      transform: translateY(-3px);
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 30px;
+      position: relative;
+    }
+
+    .floating-card img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    .floating-badge {
+      position: absolute;
+      top: -20px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--zeera-purple), var(--zeera-pink));
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: var(--neon-glow);
+    }
+
+    /* ========== MARQUEE ========== */
+    .marquee-section {
+      padding: 30px 0;
+      background: rgba(0, 168, 107, 0.1);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-item {
+      display: inline-block;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-right: 60px;
+      color: var(--zeera-gold);
+    }
+
+    .marquee-item i {
+      margin: 0 20px;
+      color: var(--zeera-orange);
+    }
+
+    /* ========== FLAVORS SECTION ========== */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--zeera-gold);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, var(--zeera-gold), var(--zeera-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .flavors-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .flavor-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.4s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flavor-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--zeera-green), var(--zeera-orange), var(--zeera-purple));
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+    }
+
+    .flavor-card:hover::before {
+      opacity: 0.15;
+    }
+
+    .flavor-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--zeera-gold);
+      box-shadow: var(--neon-glow);
+    }
+
+    .flavor-emoji {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .flavor-name {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .flavor-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+
+    .flavor-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 215, 0, 0.2);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--zeera-gold);
+    }
+
+    /* ========== VIBE SECTION ========== */
+    .vibe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .vibe-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.4s;
+    }
+
+    .vibe-card:hover {
+      transform: scale(1.02);
+      border-color: var(--zeera-pink);
+    }
+
+    .vibe-icon {
+      font-size: 48px;
+      margin-bottom: 25px;
+    }
+
+    .vibe-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .vibe-desc {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+    }
+
+    /* ========== ZEERA STORY ========== */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .story-content h3 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .story-content p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .story-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .story-image {
+      position: relative;
+    }
+
+    .story-image img {
+      width: 100%;
+      border-radius: 30px;
+      border: 2px solid var(--glass-border);
+    }
+
+    .floating-quote {
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--zeera-purple), var(--zeera-pink));
+      padding: 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      box-shadow: var(--neon-glow);
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 30px;
+      transition: all 0.4s;
+    }
+
+    .testimonial-card:hover {
+      transform: rotate(-1deg);
+      border-color: var(--zeera-gold);
+    }
+
+    .testimonial-text {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--zeera-green), var(--zeera-orange));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .author-info h4 {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .rating {
+      color: var(--zeera-gold);
+      margin-top: 8px;
+    }
+
+    /* ========== INSTAGRAM FEED ========== */
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 15px;
+    }
+
+    .insta-item {
+      position: relative;
+      padding-bottom: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .insta-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .insta-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .insta-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 168, 107, 0.7), rgba(123, 45, 142, 0.7));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .insta-item:hover .insta-overlay {
+      opacity: 1;
+    }
+
+    .insta-overlay i {
+      font-size: 32px;
+      color: #fff;
+    }
+
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      text-align: center;
+      padding: 80px;
+      background: linear-gradient(135deg, rgba(0, 168, 107, 0.2), rgba(123, 45, 142, 0.2));
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
+      margin: 60px 0;
+    }
+
+    .cta-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      margin-bottom: 20px;
+    }
+
+    .cta-desc {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 60px 0 30px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--zeera-green);
+      transform: translateY(-3px);
+    }
+
+    .footer-links h4 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--zeera-gold);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--zeera-gold);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      color: #fff;
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .newsletter-btn {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--zeera-green), var(--zeera-orange));
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .newsletter-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--glass-border);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 13px;
+    }
+
+    /* ========== MOBILE MENU ========== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: rgba(26, 26, 46, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.4s ease;
+    }
+
+    .mobile-menu.active {
+      left: 0;
+    }
+
+    .mobile-menu-content {
+      text-align: center;
+    }
+
+    .mobile-link {
+      display: block;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      padding: 20px;
+      font-family: 'Clash Display', sans-serif;
+      transition: color 0.3s;
+    }
+
+    .mobile-link:hover {
+      color: var(--zeera-gold);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-desc { margin: 0 auto 40px; }
+      .hero-stats { justify-content: center; }
+      .hero-buttons { justify-content: center; }
+      .flavors-grid { grid-template-columns: repeat(2, 1fr); }
+      .vibe-grid { grid-template-columns: repeat(2, 1fr); }
+      .story-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .logo-text { font-size: 22px; }
+      .hero-title { font-size: 40px !important; }
+      .flavors-grid { grid-template-columns: 1fr; }
+      .vibe-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; }
+      .marquee-item { font-size: 18px; }
+      .custom-cursor, .cursor-dot { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons { flex-direction: column; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .section-title { font-size: 32px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="custom-cursor" id="customCursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="noise-overlay"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">&times;</button>
+  <div class="mobile-menu-content">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#flavors" class="mobile-link">Flavors</a>
+    <a href="#vibe" class="mobile-link">The Vibe</a>
+    <a href="#story" class="mobile-link">Our Story</a>
+    <a href="#shop" class="mobile-link">Shop</a>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-emoji">🌿</span>
+      <span class="logo-text">lahor ZEERA</span>
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#flavors" class="nav-link">Flavors</a>
+      <a href="#vibe" class="nav-link">The Vibe</a>
+      <a href="#story" class="nav-link">Our Story</a>
+      <a href="#shop" class="nav-link">Shop</a>
+      <a href="#contact" class="nav-cta">Order Now 🚀</a>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge">🔥 Limited Edition Drops</span>
+        <h1 class="hero-title">
+          <span class="hero-title-line">Real Desi</span>
+          <span class="hero-title-line">Zeera Vibes Only</span>
+        </h1>
+        <p class="hero-desc">
+          lahor Zeera isn't just a drink—it's a whole mood. Bold, refreshing, and unapologetically desi. Sip the culture.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Happy Sippers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">Google Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Cities</div>
+          </div>
+        </div>
+        <div class="hero-buttons">
+          <a href="#shop" class="btn-primary">
+            Grab Your Zeera <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#flavors" class="btn-secondary">
+            Explore Flavors <i class="fas fa-compass"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-card">
+          <div class="floating-badge">🏆 #1 Zeera Drink</div>
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="lahor Zeera">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee Section -->
+<section class="marquee-section">
+  <div class="marquee-content">
+    <span class="marquee-item">🌿 lahor ZEERA <i class="fas fa-star"></i></span>
+    <span class="marquee-item">🔥 REAL DESI VIBE <i class="fas fa-star"></i></span>
+    <span class="marquee-item">💚 AUTHENTIC FLAVOR <i class="fas fa-star"></i></span>
+    <span class="marquee-item">⚡ ENERGY BOOST <i class="fas fa-star"></i></span>
+    <span class="marquee-item">🌿 lahor ZEERA <i class="fas fa-star"></i></span>
+    <span class="marquee-item">🔥 REAL DESI VIBE <i class="fas fa-star"></i></span>
+    <span class="marquee-item">💚 AUTHENTIC FLAVOR <i class="fas fa-star"></i></span>
+    <span class="marquee-item">⚡ ENERGY BOOST <i class="fas fa-star"></i></span>
+  </div>
+</section>
+
+<!-- Flavors Section -->
+<section class="section" id="flavors">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">🧃 Our Signature Drops</span>
+      <h2 class="section-title">Flavors That <span>Hit Different</span></h2>
+      <p style="color: rgba(255,255,255,0.6); max-width: 600px; margin: 20px auto;">
+        From classic zeera to wild experimental blends—we've got something for every vibe.
+      </p>
+    </div>
+    <div class="flavors-grid">
+      <div class="flavor-card">
+        <div class="flavor-emoji">🌿</div>
+        <h3 class="flavor-name">Classic Zeera</h3>
+        <p class="flavor-desc">The OG. Pure cumin magic with a hint of mint.</p>
+        <span class="flavor-tag">Bestseller 🔥</span>
+      </div>
+      <div class="flavor-card">
+        <div class="flavor-emoji">🍋</div>
+        <h3 class="flavor-name">Zeera Lemon</h3>
+        <p class="flavor-desc">Tangy lemon twist on the classic zeera.</p>
+        <span class="flavor-tag">Summer Vibes ☀️</span>
+      </div>
+      <div class="flavor-card">
+        <div class="flavor-emoji">🫚</div>
+        <h3 class="flavor-name">Ginger Zeera</h3>
+        <p class="flavor-desc">Spicy ginger kick with smooth zeera finish.</p>
+        <span class="flavor-tag">Immunity Boost 💪</span>
+      </div>
+      <div class="flavor-card">
+        <div class="flavor-emoji">🍓</div>
+        <h3 class="flavor-name">Berry Zeera</h3>
+        <p class="flavor-desc">Wild berry fusion—unexpected but iconic.</p>
+        <span class="flavor-tag">New Drop ✨</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vibe Section -->
+<section class="section" id="vibe" style="background: rgba(0,0,0,0.2);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">⚡ The lahor Energy</span>
+      <h2 class="section-title">More Than <span>Just A Drink</span></h2>
+    </div>
+    <div class="vibe-grid">
+      <div class="vibe-card">
+        <div class="vibe-icon">🎯</div>
+        <h3 class="vibe-title">100% Natural</h3>
+        <p class="vibe-desc">No artificial nonsense. Just pure, real ingredients that slap.</p>
+      </div>
+      <div class="vibe-card">
+        <div class="vibe-icon">🚀</div>
+        <h3 class="vibe-title">Instant Energy</h3>
+        <p class="vibe-desc">Need a boost? Zeera's got your back. No crash, just vibes.</p>
+      </div>
+      <div class="vibe-card">
+        <div class="vibe-icon">💫</div>
+        <h3 class="vibe-title">Desi Swag</h3>
+        <p class="vibe-desc">Carry the culture. Every sip is a flex on the basic drinks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Story Section -->
+<section class="section" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-content">
+        <span class="section-badge" style="margin-bottom: 20px;">📖 The Origin Story</span>
+        <h3>Born From The Streets Of Lahore</h3>
+        <p>
+          lahor Zeera started as a street-side obsession. The OG zeera soda walas knew what was up—pure refreshment with real flavor. We took that legacy and gave it a glow-up.
+        </p>
+        <p>
+          Now we're bringing that authentic desi energy to every corner. No cap—just real zeera, real vibes, and real culture.
+        </p>
+        <div class="story-stats">
+          <div class="stat-item">
+            <div class="stat-number">2022</div>
+            <div class="stat-label">Established</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Flavors Dropped</div>
+          </div>
+        </div>
+      </div>
+      <div class="story-image">
+        <img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc0?w=600&q=80" alt="Our Story">
+        <div class="floating-quote">
+          "Zeera that hits the soul. No 🧢"
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section" style="background: rgba(123, 45, 142, 0.1);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">💬 Real Talk</span>
+      <h2 class="section-title">The <span>Zeera Fam</span> Speaks</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Bruh, this zeera hits different. Way better than those basic sodas. Real desi energy fr."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <h4>Rohan M.</h4>
+            <p>Verified Sipper</p>
+            <div class="rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Finally a drink that understands the assignment. The ginger zeera is my go-to now. 10/10."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div class="author-info">
+            <h4>Priya K.</h4>
+            <p>Food Blogger</p>
+            <div class="rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Took this to a party and everyone was asking where to cop. lahor Zeera is the moment."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <h4>Arjun S.</h4>
+            <p>Zeera Enthusiast</p>
+            <div class="rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram Feed -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">📸 Zeera On The Gram</span>
+      <h2 class="section-title">#lahorZeeraVibes</h2>
+      <p style="color: rgba(255,255,255,0.6);">Tag us to get featured 📍</p>
+    </div>
+    <div class="instagram-grid">
+      <div class="insta-item">
+        <img src="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=300&q=80" alt="Insta 1">
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item">
+        <img src="https://images.unsplash.com/photo-1432139509613-5c4255815697?w=300&q=80" alt="Insta 2">
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item">
+        <img src="https://images.unsplash.com/photo-1536935338788-3bb959e65a9b?w=300&q=80" alt="Insta 3">
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item">
+        <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?w=300&q=80" alt="Insta 4">
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item">
+        <img src="https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=300&q=80" alt="Insta 5">
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+      <div class="insta-item">
+        <img src="https://images.unsplash.com/photo-1568901837786-4a3e0942c2f7?w=300&q=80" alt="Insta 6">
+        <div class="insta-overlay"><i class="fab fa-instagram"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" id="shop">
+  <div class="container">
+    <div class="cta-section">
+      <span class="section-badge">🚀 Limited Stock</span>
+      <h2 class="cta-title">Ready To Level Up Your Sip?</h2>
+      <p class="cta-desc">Join the Zeera revolution. Free delivery on orders over ₹499.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">
+          Shop Now <i class="fas fa-shopping-cart"></i>
+        </a>
+        <a href="#" class="btn-secondary">
+          Download App <i class="fab fa-google-play"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-emoji">🌿</span>
+          <span class="logo-text">lahor ZEERA</span>
+        </div>
+        <p>The real desi zeera experience. No cap, all flavor. Sip the culture, flex the vibe.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-spotify"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#flavors">Flavors</a></li>
+          <li><a href="#vibe">The Vibe</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Stay In The Loop</h4>
+        <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 15px;">Drop your email for exclusive drops and vibes.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email" class="newsletter-input">
+          <button class="newsletter-btn">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 lahor Zeera. All Rights Reserved. | Made with 🌿 for the culture.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Custom Cursor
+  const cursor = document.getElementById('customCursor');
+  const cursorDot = document.getElementById('cursorDot');
+  
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX - 10 + 'px';
+    cursor.style.top = e.clientY - 10 + 'px';
+    cursorDot.style.left = e.clientX - 3 + 'px';
+    cursorDot.style.top = e.clientY - 3 + 'px';
+  });
+
+  document.addEventListener('mousedown', () => {
+    cursor.style.transform = 'scale(0.8)';
+  });
+
+  document.addEventListener('mouseup', () => {
+    cursor.style.transform = 'scale(1)';
+  });
+
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  mobileClose.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Smooth Scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Navbar Scroll Effect
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.style.background = 'rgba(26, 26, 46, 0.95)';
+    } else {
+      navbar.style.background = 'rgba(26, 26, 46, 0.8)';
+    }
+  });
+
+  // Intersection Observer for Animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.flavor-card, .vibe-card, .testimonial-card, .story-content').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
 </html>
